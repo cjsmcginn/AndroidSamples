@@ -1,5 +1,7 @@
 package com.example.applicationundertest.test;
 
+import java.util.List;
+
 import android.annotation.SuppressLint;
 import android.app.Instrumentation;
 import android.test.ActivityInstrumentationTestCase2;
@@ -8,6 +10,8 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.applicationundertest.Contact;
+import com.example.applicationundertest.JSONParser;
 import com.example.applicationundertest.MainActivity;
 
 public class MainActivityTest extends
@@ -69,5 +73,12 @@ public class MainActivityTest extends
 		assertTrue(mListView.getCheckedItemCount() == 0);
 		mInstr.callActivityOnResume(mActivity);
 		assertTrue(mListView.getCheckedItemCount() > 0);
+	}
+	
+	public void testGetJsonData(){
+		JSONParser p = new JSONParser();
+		List<Contact> actual = p.getContacts();
+		assertTrue(actual.size()>0);
+	
 	}
 }

@@ -1,9 +1,12 @@
 package com.example.applicationundertest;
 
+import java.util.List;
+import android.annotation.SuppressLint;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -21,13 +24,20 @@ public class MainActivity extends ListActivity {
     }
 
 
-    @Override
+    @SuppressLint("NewApi")
+	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-		String[] mStringArray = {"Joe","Tom","Dick","Harry","Tony"};
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
-		        android.R.layout.simple_list_item_1, mStringArray);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+        StrictMode.setThreadPolicy(policy); 
+        JSONParser ps = new JSONParser();
+        List<Contact> contactList = ps.getContacts();
+		//String[] mStringArray = {"Joe","Tom","Dick","Harry","Tony"};
+
+		ArrayAdapter<Contact> adapter = new ArrayAdapter<Contact>(this, 
+		        android.R.layout.simple_list_item_1, contactList);
 		ListView listView = getListView();//(ListView) findViewById(R.id.example_list_view);
 		listView.setAdapter(adapter);
         return true;
@@ -97,4 +107,6 @@ public class MainActivity extends ListActivity {
         result = e.commit();
     	return result;
     }
+    
+    
 }
