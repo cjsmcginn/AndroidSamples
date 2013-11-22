@@ -1,6 +1,7 @@
 package com.example.applicationundertest;
 
 import java.util.List;
+
 import android.annotation.SuppressLint;
 import android.app.ListActivity;
 import android.content.Context;
@@ -9,8 +10,9 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Menu;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 public class MainActivity extends ListActivity {
@@ -34,10 +36,10 @@ public class MainActivity extends ListActivity {
         StrictMode.setThreadPolicy(policy); 
         JSONParser ps = new JSONParser();
         List<Contact> contactList = ps.getContacts();
-		//String[] mStringArray = {"Joe","Tom","Dick","Harry","Tony"};
+        Contact[] contactArray = contactList.toArray(new Contact[contactList.size()]);
+        ContactListAdapter adapter = new ContactListAdapter(this,R.layout.list_item,contactArray);
 
-		ArrayAdapter<Contact> adapter = new ArrayAdapter<Contact>(this, 
-		        android.R.layout.simple_list_item_1, contactList);
+
 		ListView listView = getListView();//(ListView) findViewById(R.id.example_list_view);
 		listView.setAdapter(adapter);
         return true;
