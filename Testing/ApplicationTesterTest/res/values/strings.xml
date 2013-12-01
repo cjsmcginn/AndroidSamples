@@ -2,5 +2,11 @@
 <resources>
 
     <string name="app_name">ApplicationTesterTest</string>
+    <string name="title_activity_edit_contact">EditContactActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="label_first_name">First Name:</string>
+    <string name="label_last_name">Last Name:</string>
+    <string name="label_middle_initial">Middle Initial:</string>
 
 </resources>

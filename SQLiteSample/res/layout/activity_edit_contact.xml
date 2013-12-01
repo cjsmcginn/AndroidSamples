@@ -1,0 +1,70 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    android:stretchColumns="2" >
+
+    <TableRow
+        android:id="@+id/tableRowFirstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/labelFirstName"
+            android:layout_column="1"
+            android:text="@string/label_first_name" />
+
+        <EditText
+            android:id="@+id/editFirstName"
+            android:layout_column="2"
+            android:inputType="text" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/labelLastName"
+            android:layout_column="1"
+            android:text="@string/label_last_name" />
+
+        <EditText
+            android:id="@+id/editLastName"
+            android:layout_column="2"
+            android:inputType="text" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/labelMiddleInitial"
+            android:layout_column="1"
+            android:text="@string/label_middle_initial" />
+
+        <EditText
+            android:id="@+id/editMiddleInitial"
+            android:layout_column="2"
+            android:maxLength="1"
+            android:inputType="text" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:layout_column="1"
+            android:id="@+id/saveContactButton"
+            android:text="@string/save"
+            android:onClick="saveContact" />
+    </TableRow>
+
+</TableLayout>
