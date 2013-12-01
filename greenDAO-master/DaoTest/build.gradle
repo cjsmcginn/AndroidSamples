@@ -1,0 +1,38 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.6.3'
+    }
+}
+
+apply plugin: 'android'
+
+dependencies {
+    instrumentTestCompile project(':DaoCore')
+}
+
+android {
+    buildToolsVersion "19.0"
+    compileSdkVersion 17
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+        }
+
+        instrumentTest {
+            manifest.srcFile 'AndroidManifest.xml'
+            assets.srcDirs = ['assets']
+            java.srcDirs = ['src','src-gen']
+        }
+
+    }
+
+    defaultConfig {
+        testPackageName "de.greenrobot.daotest"
+        testInstrumentationRunner "android.test.InstrumentationTestRunner"
+    }
+}

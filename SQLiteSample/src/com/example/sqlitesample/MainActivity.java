@@ -43,6 +43,7 @@ public class MainActivity extends Activity {
 		Contact c = new Contact();
 		Intent intent = new Intent(this,EditContactActivity.class);
 		startActivity(intent);
+		
 		//contactsAdapter.add(c);
 		//Intent intent = new Intent(this,EditContactActivity.class);
 		//startActivity(intent);

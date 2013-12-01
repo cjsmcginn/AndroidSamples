@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">greenDAO Note Example</string>
+    <string name="label_add">Add</string>
+    <string name="enter_note">Add New Note</string>
+</resources>
