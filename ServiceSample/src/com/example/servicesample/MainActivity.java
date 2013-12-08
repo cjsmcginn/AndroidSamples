@@ -4,19 +4,33 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
 public class MainActivity extends Activity implements ServiceConnection {
 	private IRemoteInterface mRemoteInterface;
+	private ResponseReceiver mResponseReceiver;
+	private IBroadcastListener mActivityBroadcastListener = new IBroadcastListener(){
+
+		@Override
+		public void onBroadcast() {
+			// TODO Auto-generated method stub
+			Log.d("DebugLog","Main Activity OnBroadcast Called");
+		}};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		IntentFilter filter = new IntentFilter(ResponseReceiver.ACTION_REP);
+		mResponseReceiver = new ResponseReceiver();
+		mResponseReceiver.setBroadcastListener(mActivityBroadcastListener);
+		registerReceiver(mResponseReceiver,filter);
 	}
 
 	@Override
@@ -39,6 +53,16 @@ public class MainActivity extends Activity implements ServiceConnection {
 		// TODO Auto-generated method stub
 		mRemoteInterface = IRemoteInterface.Stub.asInterface(service);
 		Log.i("DebugLog","Interface Bound");
+		try {
+			ApiChannel target = mRemoteInterface.getApiChannel();
+			Log.i("DebugLog", target.getName());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Log.e("DebugLog",e.getMessage());
+		}
+		Intent ciIntent = new Intent(this, ContentIntentService.class);
+		startService(ciIntent);
 	}
 
 	@Override
